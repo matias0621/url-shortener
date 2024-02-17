@@ -5,7 +5,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const inputRef = useRef();
-  const [shortURL, setshortURL] = useState();
+  const [shortURL, setShortURL] = useState();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,7 +19,7 @@ export default function Home() {
       body: JSON.stringify({url})
     }).then (res => res.json())
     .then((data) => {
-      setshortURL(data.setshortURL);
+      setShortURL(data.shortUrl); // Cambio aquí
     })
   }
 
@@ -31,10 +31,10 @@ export default function Home() {
      <p>Aorta tus URLs aqui</p>
 
      <div>
-      <form action="" onSubmit={handleSubmit}>
+      <form action="" onSubmit={handleSubmit} className="flex flex-col">
         <input ref={inputRef} type="text" className="text-black" />
         <button>Acorta</button>
-        <span>
+        <span className="text-white">
           {shortURL}
         </span>
       </form>

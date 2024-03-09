@@ -1,11 +1,14 @@
 import { Inter } from "next/font/google";
 import { useRef, useState } from "react";
 
+
 const inter = Inter({ subsets: ["latin"] });
+
 
 export default function Home() {
   const inputRef = useRef();
   const [shortURL, setShortURL] = useState();
+  const [urlArray, setUrlArray] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,7 +22,8 @@ export default function Home() {
       body: JSON.stringify({url})
     }).then (res => res.json())
     .then((data) => {
-      setShortURL(data.shortUrl); // Cambio aquí
+      setShortURL(data.shortUrl); 
+      setUrlArray(prevUrl => [...prevUrl, data.shortUrl]);
     })
   }
 
@@ -38,6 +42,16 @@ export default function Home() {
           {shortURL}
         </span>
       </form>
+
+      <div>
+        {
+          urlArray.map((url, index) => (
+            <li key={index}>
+              <a href={`/${url}`}> {url} </a>
+            </li>
+          ))
+        }
+      </div>
      </div>
     </main>
   );

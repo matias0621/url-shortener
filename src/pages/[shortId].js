@@ -12,7 +12,7 @@ export async function getServerSideProps({ params }) {
 
     try {
         const data = await prisma.link.findUnique({
-            where: { shortUrl: shortId }, // Corrección aquí
+            where: { shortUrl: shortId }, 
         });
 
         if (!data){

@@ -13,7 +13,7 @@ export default function Home() {
     e.preventDefault();
     const url = inputRef.current.value;
     //TODO: Peticion al API
-    fetch("/api/shortUrl", {
+    fetch("https://url-shortener-nu-eight.vercel.app/api/shortUrl", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
